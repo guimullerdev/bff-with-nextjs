@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { fetchPosts } from "@/app/lib/api";
+import { fetchPostsBFF } from "@/app/lib/api";
 
 export async function GET(req: NextRequest) {
   try {
-    const posts = await fetchPosts();
+    const posts = await fetchPostsBFF();
     return NextResponse.json({ posts });
   } catch {
     return NextResponse.json(

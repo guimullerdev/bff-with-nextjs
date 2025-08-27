@@ -8,27 +8,35 @@ export default async function Home() {
   const posts: Post[] = data.posts;
 
   return (
-    <main className="min-h-screen flex flex-col items-center bg-gradient-to-tr from-blue-50 via-white to-purple-50 py-10">
-      <h1 className="text-3xl font-extrabold mb-8 text-center text-purple-950 drop-shadow-lg">
+    <main className="min-h-screen flex flex-col items-center bg-gray-50 py-10">
+      <h1 className="text-2xl font-bold mb-8 text-center text-gray-900">
         Exemplo BFF com <span className="text-fuchsia-600">Next.js 15</span> +{" "}
-        <span className="text-sky-700">Typescript</span> <br />
-        <span className="text-base font-thin tracking-wide">
-          (SSR - App Router | UI Tailwind 🍃)
+        <span className="text-sky-700">TypeScript</span>
+        <br />
+        <span className="text-base font-normal text-gray-500">
+          (SSR - App Router | UI Tailwind)
         </span>
       </h1>
-      <ul className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="p-2 bg-green-100 border-l-4 border-green-600 text-green-900 mb-4 text-sm rounded">
+        Este demo utiliza <b>BFF/SSR</b>: todos os dados já chegaram prontos do
+        servidor ✔️
+      </div>
+      <ul className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-4">
         {posts.slice(0, 8).map((post) => (
           <li
             key={post.id}
-            className="bg-white/90 border border-fuchsia-100 rounded-2xl shadow-lg p-6 group transition-all hover:scale-[1.03] hover:shadow-2xl hover:border-fuchsia-300"
+            className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col justify-between"
           >
-            <span className="block text-sm text-gray-400 mb-2">
+            <span className="block text-xs text-gray-400 mb-1">
               Post #{post.id}
             </span>
-            <p className="text-xl font-semibold mb-3 group-hover:text-fuchsia-700 transition-colors">
+            <p className="text-lg font-medium mb-2 text-gray-900">
               {post.title}
             </p>
-            <p className="text-gray-700">{post.body}</p>
+            <p className="text-gray-700 text-sm mb-2">{post.body}</p>
+            <span className="text-xs text-gray-500">
+              Autor: <span className="font-semibold">{post.author}</span>
+            </span>
           </li>
         ))}
       </ul>
