@@ -60,5 +60,20 @@ yarn dev
 
 ### 🔧 Como visualizar os fluxos no navegador
 
-- SSR/BFF: http://localhost:3000
-- Client-side: http://localhost:3000/client
+- SSR/BFF:
+  - Local: http://localhost:3000
+  - External: https://bff-with-nextjs.vercel.app
+- Client-side:
+  - Local: http://localhost:3000/client
+  - External: https://bff-with-nextjs.vercel.app/client
+
+### ℹ️ Nota:
+
+- Ao testar em produção, a diferença absoluta de performance pode ser menor (diferença de 2-4 pontos no Lighthouse), graças à infraestrutura otimizada e à rede local dos servidores.
+- Em ambientes reais (usuário final, 4G, regiões remotas), os ganhos do SSR/BFF costumam ser ainda mais significativos, atingindo +8~10 pontos ou melhorando métricas como First Contentful Paint e TTI.
+
+### ⚡ Dica de teste realista:
+
+- Ativando simulação de rede 3G ou "Slow 4G" (Network Throttling)
+- Com CPU Throttling ativado (padrão recomendado pelo Lighthouse)
+- Em modo mobile
