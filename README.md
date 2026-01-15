@@ -4,52 +4,52 @@
 ![Client Side Fetch](https://img.shields.io/badge/Client%20Fetch-Demo-blue)
 ![Performance Focus](https://img.shields.io/badge/Performance-Optimized-brightgreen)
 
-Este projeto demonstra, na prática, a diferença de fluxo, manutenção e performance entre dois modos de consumir APIs externas: fetch direto do client (React/browser) e via Backend-for-Frontend (BFF) usando Next.js (SSR ou API routes).
+This project practically demonstrates the difference in flow, maintenance, and performance between two ways of consuming external APIs: direct fetch from the client (React/browser) and via Backend-for-Frontend (BFF) using Next.js (SSR or API routes).
 
-Usar BFF é cada vez mais comum em projetos reais de médio/grande porte, pois simplifica a experiência frontend e centraliza todo o tratamento de payload, autenticação e adaptação de dados.
+Using BFF is increasingly common in real-world medium/large-scale projects, as it simplifies the frontend experience and centralizes all payload handling, authentication, and data adaptation.
 
-- **BFF:** Centraliza e padroniza a lógica e transformação dos dados, entrega payload _final_ já tratado para o Frontend, melhora performance, segurança e manutenibilidade.
-- **Client:** Todo tratamento, requisições e transformação precisam ser feitos no navegador; isso gera mais requests externos, duplicação de lógica e exposição da API.
+- **BFF:** Centralizes and standardizes data logic and transformation, delivers the final processed payload to the Frontend, improves performance, security, and maintainability.
+- **Client:** All processing, requests, and transformation must be done in the browser; this generates more external requests, duplication of logic, and API exposure.
 
 ---
 
-| Característica      | BFF (Server/SSR)          | Client Only                |
-| ------------------- | ------------------------- | -------------------------- |
-| Quantidade Requests | 1 (otimizado e cacheável) | 1 + N (multiplicado)       |
-| Performance         | Rápida (SSR/SSG)          | Depende da rede do usuário |
-| Segurança           | API oculta e protegida    | API exposta no browser     |
-| Manutenção          | Centralizada (BFF)        | Duplicada em todo front    |
+| Feature            | BFF (Server/SSR)            | Client Only                |
+| ------------------ | --------------------------- | -------------------------- |
+| Number of Requests | 1 (optimized and cacheable) | 1 + N (multiplied)         |
+| Performance        | Fast (SSR/SSG)              | Depends on user's network  |
+| Security           | Hidden and protected API    | API exposed in the browser |
+| Maintenance        | Centralized (BFF)           | Duplicated across frontend |
 
-## 💡 Demonstração de Performance
+## 💡 Performance Demonstration
 
-Testes feitos com o [Lighthouse](https://developers.google.com/web/tools/lighthouse) mostram claramente as diferenças de abordagem:
+Tests conducted with [Lighthouse](https://developers.google.com/web/tools/lighthouse) clearly show the differences in approach:
 
 ### SSR/BFF
 
 ![SSR network example](docs/server-performance.png)
-<sub>O frontend recebe todo o conteúdo já processado na primeira resposta</sub>
+<sub>The frontend receives all processed content in the first response</sub>
 
 ### Client-side
 
 ![Client fetch network example](docs/client-performance.png)
-<sub>O navegador executa múltiplas chamadas para montar a tela, aumentando a latência e sobrecarregando a rede do usuário</sub>
+<sub>The browser executes multiple calls to render the screen, increasing latency and overloading the user's network</sub>
 
 ---
 
-### Isso representa:
+### This represents:
 
-- Menor carga no navegador do usuário
-- Menos latência percebida
-- Melhor experiência para quem usa a aplicação
-- Menos riscos com mudanças na API externa
+- Lower load on the user's browser
+- Less perceived latency
+- Better user experience for the application
+- Fewer risks with external API changes
 
-### 🚀 Por que usar BFF?
+### 🚀 Why use BFF?
 
-- Centralizar regras de negócio e tratamento dados
-- Reduzir acoplamento e exposição de endpoints sensíveis
-- Facilitar testes e o versionamento da API
+- Centralize business rules and data processing
+- Reduce coupling and exposure of sensitive endpoints
+- Facilitate API testing and versioning
 
-### 🔧 Como rodar o projeto
+### 🔧 How to run the project
 
 ```bash
 git clone https://github.com/guimullerdev/bff-with-nextjs
@@ -58,7 +58,7 @@ yarn install
 yarn dev
 ```
 
-### 🔧 Como visualizar os fluxos no navegador
+### 🔧 How to view the flows in the browser
 
 - SSR/BFF:
   - Local: http://localhost:3000
@@ -67,13 +67,13 @@ yarn dev
   - Local: http://localhost:3000/client
   - External: https://bff-with-nextjs.vercel.app/client
 
-### ℹ️ Nota:
+### ℹ️ Note:
 
-- Ao testar em produção, a diferença absoluta de performance pode ser menor (diferença de 2-4 pontos no Lighthouse), graças à infraestrutura otimizada e à rede local dos servidores.
-- Em ambientes reais (usuário final, 4G, regiões remotas), os ganhos do SSR/BFF costumam ser ainda mais significativos, atingindo +8~10 pontos ou melhorando métricas como First Contentful Paint e TTI.
+- When testing in production, the absolute performance difference might be smaller (a difference of 2-4 points in Lighthouse), thanks to optimized infrastructure and local server networks.
+- In real-world environments (end-user, 4G, remote regions), the gains from SSR/BFF are usually even more significant, reaching +8~10 points or improving metrics like First Contentful Paint and TTI.
 
-### ⚡ Dica de teste realista:
+### ⚡ Realistic test tip:
 
-- Ativando simulação de rede 3G ou "Slow 4G" (Network Throttling)
-- Com CPU Throttling ativado (padrão recomendado pelo Lighthouse)
-- Em modo mobile
+- Activate 3G or "Slow 4G" network simulation (Network Throttling)
+- With CPU Throttling activated (Lighthouse recommended default)
+- In mobile mode
